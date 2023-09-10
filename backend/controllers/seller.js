@@ -36,6 +36,10 @@ exports.updateQuantity = async (req, res) => {
     const price = req.body.price;
     const quantity = req.body.quantity - buyNumber;
 
+    if(quantity < 0) {
+        throw new Error('quantity is now under zero');
+    }
+
     const updatedEntry = await CandyInfo.update(
       {
         candyName: name,
@@ -54,9 +58,3 @@ exports.updateQuantity = async (req, res) => {
   }
 };
 
-exports.deleteCandy = async (req, res) => {
-    const candyId = req.params.id;
-    const candy = await CandyInfo.findByPk(candyId);
-    const result = await candy.destroy();
-    res.json(result);
-}

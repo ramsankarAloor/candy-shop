@@ -1,5 +1,3 @@
-
-
 let form = document.getElementById("my-form");
 
 form.addEventListener("submit", postNewInfo);
@@ -28,22 +26,18 @@ function displayRecord(object) {
   let buy1Btn = document.createElement("button");
   let buy2Btn = document.createElement("button");
   let buy3Btn = document.createElement("button");
-  let deleteBtn = document.createElement("button");
   buy1Btn.textContent = "Buy 1";
   buy2Btn.textContent = "Buy 2";
   buy3Btn.textContent = "Buy 3";
-  deleteBtn.textContent = "Delete"
   buy1Btn.className = "btnDelete";
   buy2Btn.className = "btnDelete";
   buy3Btn.className = "btnDelete";
-  deleteBtn.className = "btnDelete"
 
   let li = document.createElement("li");
   li.appendChild(textInside);
   li.appendChild(buy1Btn);
   li.appendChild(buy2Btn);
   li.appendChild(buy3Btn);
-  li.appendChild(deleteBtn);
 
   let ul = document.getElementById("items");
 
@@ -52,27 +46,41 @@ function displayRecord(object) {
   buy1Btn.addEventListener("click", decrement1);
   buy2Btn.addEventListener("click", decrement2);
   buy3Btn.addEventListener("click", decrement3);
-  deleteBtn.addEventListener("click", deleteRecord);
 
-  async function deleteRecord(event){
-    await axios.delete(`http://localhost:4000/seller/delete/${object.id}`);
+  const name = object.candyName;
+  const description = object.description;
+  const price = object.price;
+  const quantity = object.quantity;
+
+  const ob = {
+    name: name,
+    description: description,
+    price: price,
+    quantity: quantity,
+  };
+
+  async function decrement1(event) {
+    await axios.put(
+      `http://localhost:4000/seller/update-info/${object.id}/1`,
+      ob
+    );
     window.location.reload();
   }
 
-  async function decrement1(event) {
-    console.log('hello');
-    await axios.put(`http://localhost:4000/seller/update-info/${object.id}/1`);
-    // window.location.reload();
-  }
-
   async function decrement2(event) {
-    await axios.put(`http://localhost:4000/seller/update-info/${object.id}/2`);
-    // window.location.reload();
+    await axios.put(
+      `http://localhost:4000/seller/update-info/${object.id}/2`,
+      ob
+    );
+    window.location.reload();
   }
 
   async function decrement3(event) {
-    await axios.put(`http://localhost:4000/seller/update-info/${object.id}/3`);
-    // window.location.reload();
+    await axios.put(
+      `http://localhost:4000/seller/update-info/${object.id}/3`,
+      ob
+    );
+    window.location.reload();
   }
 }
 
