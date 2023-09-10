@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Candy shop</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header>
+      <h1>Candy shop seller dashboard</h1>
+    </header>
+
+    <section class="container">
+      <form id="my-form">
+        <h1>Add Info</h1>
+        <div class="msg"></div>
+        <div>
+          <label for="name">Candy name:</label>
+          <input type="text" id="name" required />
+        </div>
+        <div>
+          <label for="description">Description:</label>
+          <input type="text" id="description" required/>
+        </div>
+        <div>
+          <label for="price">Price:</label>
+          <input type="text" id="price" pattern="[0-9]+" required/>
+        </div>
+        <div>
+          <label for="quantity">Quantity:</label>
+          <input type="number" id="quantity" min="0" step="1" required/>
+        </div>
+        <input class="btn" type="submit" value="Add Item" />
+      </form>
+
+      <ul class="items" id="items">
+        <!-- <li class="item">Item 1</li>
+        <li class="item">Item 2</li>
+        <li class="item">Item 3</li> -->
+      </ul>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
